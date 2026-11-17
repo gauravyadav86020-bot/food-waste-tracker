@@ -2,4 +2,5 @@ FROM eclipse-temurin:17-jdk
 WORKDIR /app
 COPY . .
 RUN chmod +x mvnw && ./mvnw clean package -DskipTests
-CMD ["java", "-jar", "target/foodwaste-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8080
+CMD ["sh", "-c", "java -jar target/*.jar --server.port=${PORT:-8080}"]
